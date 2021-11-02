@@ -30,14 +30,26 @@
         <label for="exampleInputEmail1" class="form-label"
           >Número de persones</label
         >
-        <input
-          type="number"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          min="1"
-          max="12"
-        />
+        <div class="row" style="padding-left: 10px;">
+          <div class="col-2 p-0">
+            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople -= 1">-</button>
+          </div>
+          <div class="col-8">
+            <div class="input-group input-group-lg">
+              <input
+                type="number"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg"
+                v-model="numPeople"
+              />
+            </div>
+          </div>
+          <div class="col-2 p-0">
+            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople += 1">+</button>
+          </div>
+        </div>
         <small id="emailHelp" class="form-text">
           Per a reserves de més de 12 persones, siusplau, contacteu amb
           nosaltres per telèfon o per correu electrònic.
@@ -48,22 +60,17 @@
         <label for="exampleInputEmail1" class="form-label"
           >Selecciona una data</label
         >
-        <div class="row">
-          <div class="col-10">
-            <input
-              type="number"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              min="1"
-              max="12"
-            />
-          </div>
-          <div class="col-2">
-            <button type="button" class="btn btn-secondary">
-              <i class="bi bi-calendar-week"></i>
-            </button>
-          </div>
+        <div class="input-group mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-default">
+            <i class="bi bi-calendar-week"></i>
+          </span>
         </div>
         <small
           >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
@@ -80,22 +87,17 @@
         <label for="exampleInputEmail1" class="form-label"
           >Selecciona una hora</label
         >
-        <div class="row">
-          <div class="col-10">
-            <input
-              type="number"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              min="1"
-              max="12"
-            />
-          </div>
-          <div class="col-2">
-            <button type="button" class="btn btn-secondary">
-              <i class="bi bi-calendar-week"></i>
-            </button>
-          </div>
+        <div class="input-group mb-3">
+          <input
+            type="number"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+          <span class="input-group-text" id="inputGroup-sizing-default">
+            <i class="bi bi-clock"></i>
+          </span>
         </div>
         <small id="emailHelp" class="form-text">
           Sols acceptem reserves per a dinars o sopars.
@@ -167,8 +169,10 @@
       </small>
       <hr />
       <!-- Observacions -->
-      <small>Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de
-          nens, etc.):</small>
+      <small
+        >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de nens,
+        etc.):</small
+      >
       <div class="mb-3 form-floating">
         <textarea
           class="form-control"
@@ -176,9 +180,7 @@
           id="floatingTextarea2"
           style="height: 100px"
         ></textarea>
-        <label for="floatingTextarea2"
-          >Observacions</label
-        >
+        <label for="floatingTextarea2">Observacions</label>
       </div>
       <small
         >Tant la nostra entrada, espais com serveis estan adaptats per a
@@ -266,7 +268,7 @@
 
       <!-- Botó confirm & enviar -->
       <button type="button" class="btn btn-lg btn-success">Enviar</button>
-      <br>
+      <br />
       <small>
         Un cop rebem les teves dades, t'enviarem un missatge per correu
         electrònic si la teva reserva ha estat confirmada.<br />
@@ -274,8 +276,8 @@
         amb nosaltres per a cancel·lar-la.
       </small>
     </form>
-    <br>
-    <br>
+    <br />
+    <br />
     <PageNav></PageNav>
   </div>
 </template>
@@ -288,6 +290,12 @@ export default {
   components: {
     PageNav,
   },
+  data() {
+      return {
+          numPeople: 1,
+          maxPeople: 12,
+      }
+  }
 };
 </script>
 
