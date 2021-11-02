@@ -43,8 +43,14 @@
             </button>
           </div>
         </div>
-        <small id="emailHelp" class="form-text">
-          Obrim de dimarts a diumenge de 8 h fins a la mitjanit.
+        <small
+          >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
+          <a
+            href="https://g.page/notoriousjazzcafe?share"
+            class="tdn"
+            target="_blank"
+            >Consulta el nostre horari actualitzat a Google Maps
+          </a>
         </small>
       </div>
       <!-- Hora -->
@@ -139,12 +145,64 @@
       </small>
       <hr />
       <!-- Observacions -->
-
+      <div class="mb-3 form-floating">
+        <textarea
+          class="form-control"
+          placeholder="Leave a comment here"
+          id="floatingTextarea2"
+          style="height: 100px"
+        ></textarea>
+        <label for="floatingTextarea2"
+          >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de
+          nens, etc.):</label
+        >
+      </div>
+      <small
+        >Tant la nostra entrada, espais com serveis estan adaptats per a
+        persones amb mobilitat reduïda (PMR).</small
+      >
+      <br />
+      <small>S'accepten gossos de companyia.</small><br /> <br>
       <!-- Petit missatge legal -->
+      <small
+        >No utilitzarem les teves dades per a finalitats comercials ni tampoc en
+        realitzarem cap cessió a tercers. Les teves dades seran emmagatzemades
+        un màxim de 72 hores a la nostra base de dades, comptant des de l'hora
+        d'arribada al restaurant. Durant aquestes 72 hores podem utilitzar les
+        teves dades per a contactar-te en cas que sigui necessari (recordatori,
+        cancel·lació o altres motius).</small
+      >
+      <br>
+      <br>
 
       <!-- Acceptar legal -->
+      <button type="button" class="btn btn-info">
+        Llegir les condicions legals
+      </button>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckChecked"
+          checked
+        />
+        <label class="form-check-label" for="flexCheckChecked">
+          Accepto les condicions d'ús, la política de privacitat i el tractament
+          de dades personals.
+        </label>
+      </div>
+      <br>
 
       <!-- Botó confirm & enviar -->
+      <button type="button" class="btn btn-lg btn-success">Enviar</button>
+      <br />
+      <small>
+        Un cop rebem les teves dades, t'enviarem un missatge per correu
+        electrònic si la teva reserva ha estat confirmada.<br />
+        Si finalment no pots assistir a la teva reserva, si us plau, contacta
+        amb nosaltres per a cancel·lar-la.
+      </small>
     </form>
     <PageNav></PageNav>
   </div>
