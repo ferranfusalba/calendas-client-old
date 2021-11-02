@@ -11,6 +11,7 @@
 <style>
 html, body {
   background-color: #f9ecdb;
+  touch-action: manipulation;
 }
 
 #app {
@@ -22,6 +23,7 @@ html, body {
   background-color: #f9ecdb;
   padding-left: 10px;
   padding-right: 10px;
+  touch-action: manipulation;
 }
 
 .btn {
