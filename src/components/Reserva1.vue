@@ -1,6 +1,28 @@
 <template>
   <div>
     <h2>Selecciona rest.</h2>
+    <div class="card mb-3">
+      <img src="" class="card-img-top" alt="" />
+      <div class="card-body">
+        <h5 class="card-title">Notorious Jazz Café</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <img src="" class="card-img-top" alt="" />
+      <div class="card-body">
+        <h5 class="card-title">Notorious Piano Bar</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
     <hr />
     <form>
       <!-- Número de persones -->
@@ -26,8 +48,8 @@
         <label for="exampleInputEmail1" class="form-label"
           >Selecciona una data</label
         >
-        <div class="row p-0">
-          <div class="col-10 p-0">
+        <div class="row">
+          <div class="col-10">
             <input
               type="number"
               class="form-control"
@@ -37,7 +59,7 @@
               max="12"
             />
           </div>
-          <div class="col-2 p-0">
+          <div class="col-2">
             <button type="button" class="btn btn-secondary">
               <i class="bi bi-calendar-week"></i>
             </button>
@@ -58,8 +80,8 @@
         <label for="exampleInputEmail1" class="form-label"
           >Selecciona una hora</label
         >
-        <div class="row p-0">
-          <div class="col-10 p-0">
+        <div class="row">
+          <div class="col-10">
             <input
               type="number"
               class="form-control"
@@ -69,7 +91,7 @@
               max="12"
             />
           </div>
-          <div class="col-2 p-0">
+          <div class="col-2">
             <button type="button" class="btn btn-secondary">
               <i class="bi bi-calendar-week"></i>
             </button>
@@ -145,6 +167,8 @@
       </small>
       <hr />
       <!-- Observacions -->
+      <small>Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de
+          nens, etc.):</small>
       <div class="mb-3 form-floating">
         <textarea
           class="form-control"
@@ -153,8 +177,7 @@
           style="height: 100px"
         ></textarea>
         <label for="floatingTextarea2"
-          >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de
-          nens, etc.):</label
+          >Observacions</label
         >
       </div>
       <small
@@ -162,7 +185,8 @@
         persones amb mobilitat reduïda (PMR).</small
       >
       <br />
-      <small>S'accepten gossos de companyia.</small><br /> <br>
+      <small>S'accepten gossos de companyia.</small><br />
+      <br />
       <!-- Petit missatge legal -->
       <small
         >No utilitzarem les teves dades per a finalitats comercials ni tampoc en
@@ -172,13 +196,59 @@
         teves dades per a contactar-te en cas que sigui necessari (recordatori,
         cancel·lació o altres motius).</small
       >
-      <br>
-      <br>
+      <br />
+      <br />
 
       <!-- Acceptar legal -->
-      <button type="button" class="btn btn-info">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-info"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
         Llegir les condicions legals
       </button>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Condicions legals
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
+              et non rerum optio quia aspernatur nemo, minus repellat illo rem,
+              perferendis cupiditate vel? Dignissimos earum suscipit possimus
+              cumque similique doloremque.
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Tancar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="form-check">
         <input
           class="form-check-input"
@@ -192,11 +262,11 @@
           de dades personals.
         </label>
       </div>
-      <br>
+      <br />
 
       <!-- Botó confirm & enviar -->
       <button type="button" class="btn btn-lg btn-success">Enviar</button>
-      <br />
+      <br>
       <small>
         Un cop rebem les teves dades, t'enviarem un missatge per correu
         electrònic si la teva reserva ha estat confirmada.<br />
@@ -204,6 +274,8 @@
         amb nosaltres per a cancel·lar-la.
       </small>
     </form>
+    <br>
+    <br>
     <PageNav></PageNav>
   </div>
 </template>

@@ -8,12 +8,23 @@
 </template>
 
 <style>
+html, body {
+  background-color: #f9ecdb;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Fira Sans', Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #f9ecdb;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn {
+  font-family: 'Work Sans', 'Fira Sans', Avenir, Helvetica, Arial, sans-serif; 
 }
 </style>
 
