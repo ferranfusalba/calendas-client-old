@@ -1,5 +1,6 @@
 <template>
   <div id="nav">
+        <h1 class="margin">Margin</h1>
     <Header></Header>
   </div>
   <section class="mt-4">
@@ -25,6 +26,10 @@ html, body {
 
 .btn {
   font-family: 'Work Sans', 'Fira Sans', Avenir, Helvetica, Arial, sans-serif; 
+}
+
+.margin {
+  color: transparent;
 }
 </style>
 
