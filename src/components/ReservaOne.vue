@@ -329,7 +329,7 @@ export default {
   data() {
     return {
       numPeople: 1,
-      validationPeople: Boolean,
+      validationPeople: true,
       todayNumber: new Date().getDate(),
       todayMonth: new Date().getMonth() + 1,
       todayYear: new Date().getFullYear(),
