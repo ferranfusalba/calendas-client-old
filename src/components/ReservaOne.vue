@@ -1,5 +1,6 @@
 <template>
-  <div> <!--
+  <div>
+    <!--
     <h2>Selecciona rest.</h2>
     <div class="card mb-3">
       <img src="" class="card-img-top" alt="" />
@@ -66,7 +67,7 @@
         <small class="text-danger">{{ watcherValidation }}</small>
         <small>
           Per a reserves de més de 12 persones, siusplau, contacteu amb
-          nosaltres per telèfon o per correu electrònic.
+          nosaltres per <a href="tel:+34937688731" target="_blank" class="tdn">telèfon</a> o per <a href="mailto:notoriousjazzcafe@hotmail.com" target="_blank" class="tdn">correu electrònic</a>.
         </small>
       </div>
 
@@ -74,7 +75,7 @@
       <div class="mb-3">
         <h6>MANUAL</h6>
         <label>Selecciona una data</label>
-        <div class="input-group mb-3">
+        <div class="input-group mt-1 mb-1">
           <input
             type="date"
             class="form-control"
@@ -102,7 +103,7 @@
       <div class="mb-3">
         <h6>PIKADAY</h6>
         <label>Selecciona una data</label>
-        <div class="input-group mb-3">
+        <div class="input-group mt-1 mb-1">
           <input
             type="date"
             class="form-control"
@@ -129,17 +130,30 @@
       <!-- Hora -->
       <div class="mb-3">
         <label>Selecciona una hora</label>
-        <div class="input-group mb-3">
+        <div class="input-group mt-1 mb-1">
+          <!--
           <input
             type="time"
             class="form-control"
             id="inputTime"
             aria-describedby="inputGroup-sizing-default"
-          />
+          /> -->
           <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-clock"></i>
           </span> -->
+
+          <select class="form-control">
+            <option
+              v-for="option in hourOptions"
+              v-bind:value="option.value"
+              :key="option"
+              id="inputTime"
+              :disabled="option.disabled"
+            >
+              {{ option.text }}
+            </option>
+          </select>
         </div>
         <small> Sols acceptem reserves per a dinars o sopars. </small>
       </div>
@@ -327,11 +341,48 @@ export default {
         new Date().getDate(),
       todayToday: this.twoDigitDay(new Date()),
       monthToday: this.twoDigitMonth(new Date()),
-      minToday2: new Date().getFullYear() +
+      minToday2:
+        new Date().getFullYear() +
         "-" +
         this.twoDigitMonth(new Date()) +
         "-" +
         this.twoDigitDay(new Date()),
+      hourOptions: [
+        { text: "Dinars", disabled: true},
+        { text: "12:30"},
+        { text: "12:45"},
+        { text: "13:00"},
+        { text: "13:15"},
+        { text: "13:30"},
+        { text: "13:45"},
+        { text: "14:00"},
+        { text: "14:15"},
+        { text: "14:30"},
+        { text: "14:45"},
+        { text: "15:00"},
+        { text: "15:15"},
+        { text: "15:30"},
+        { text: "15:45"},
+        { text: "16:00"},
+        { text: "16:15"},
+        { text: "16:30"},
+        { text: "Sopars", disabled: true},
+        { text: "19:00"},
+        { text: "19:15"},
+        { text: "19:30"},
+        { text: "19:45"},
+        { text: "20:00"},
+        { text: "20:15"},
+        { text: "20:30"},
+        { text: "20:45"},
+        { text: "21:00"},
+        { text: "21:15"},
+        { text: "21:30"},
+        { text: "21:45"},
+        { text: "22:00"},
+        { text: "22:15"},
+        { text: "22:30"},
+      ],
     };
   },
   watch: {
@@ -349,7 +400,7 @@ export default {
       return (d.getDate() < 10 ? "0" : "") + d.getDate();
     },
     twoDigitMonth(d) {
-      return ((d.getMonth() + 1) < 10 ? "0" : "") + (d.getMonth() + 1);
+      return (d.getMonth() + 1 < 10 ? "0" : "") + (d.getMonth() + 1);
     },
     validacio() {
       this.validation = "";
