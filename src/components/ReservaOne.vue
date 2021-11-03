@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div> <!--
     <h2>Selecciona rest.</h2>
     <div class="card mb-3">
       <img src="" class="card-img-top" alt="" />
@@ -23,7 +23,7 @@
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
-    <hr />
+    <hr /> -->
     <div class="form-group">
       <!-- Número de persones -->
       <div class="mb-3">
@@ -43,12 +43,12 @@
             <div class="input-group input-group-lg">
               <input
                 type="number"
-                class="form-control"
+                class="form-control bg-white"
                 id="inputPeople"
                 aria-describedby="inputGroup-sizing-lg"
                 v-model="numPeople"
                 @blur="validacio()"
-                data-disable-touch-keyboard
+                readonly
               />
             </div>
           </div>
@@ -79,7 +79,9 @@
             class="form-control"
             id="inputDate"
             aria-describedby="inputGroup-sizing-default"
-          /> <!--
+            :min="minToday2"
+          />
+          <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-calendar-week"></i>
           </span> -->
@@ -97,28 +99,25 @@
 
       <!-- Hora -->
       <div class="mb-3">
-        <label>Selecciona una hora</label
-        >
+        <label>Selecciona una hora</label>
         <div class="input-group mb-3">
           <input
             type="time"
             class="form-control"
             id="inputTime"
             aria-describedby="inputGroup-sizing-default"
-          /> <!--
+          />
+          <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-clock"></i>
           </span> -->
         </div>
-        <small>
-          Sols acceptem reserves per a dinars o sopars.
-        </small>
+        <small> Sols acceptem reserves per a dinars o sopars. </small>
       </div>
 
       <!-- Preferència de taula -->
       <div class="mb-3">
-        <label>Selecciona una preferència de taula</label
-        >
+        <label>Selecciona una preferència de taula</label>
         <div class="form-check">
           <input
             class="form-check-input"
@@ -126,9 +125,7 @@
             name="flexRadioDefault"
             id="radioInterior"
           />
-          <label class="form-check-label" for="radioInterior">
-            Interior
-          </label>
+          <label class="form-check-label" for="radioInterior"> Interior </label>
         </div>
         <div class="form-check">
           <input
@@ -137,9 +134,7 @@
             name="flexRadioDefault"
             id="radioTerrassa"
           />
-          <label class="form-check-label" for="radioTerrassa">
-            Terrassa
-          </label>
+          <label class="form-check-label" for="radioTerrassa"> Terrassa </label>
         </div>
       </div>
       <hr />
@@ -147,41 +142,25 @@
       <!-- Nom -->
       <div class="mb-3">
         <label>Nom</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputName"
-        />
+        <input type="text" class="form-control" id="inputName" />
       </div>
 
       <!-- Cognoms -->
       <div class="mb-3">
         <label>Cognoms</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputSurname"
-        />
+        <input type="text" class="form-control" id="inputSurname" />
       </div>
 
       <!-- Correu electrònic -->
       <div class="mb-3">
         <label>Correu electrònic</label>
-        <input
-          type="email"
-          class="form-control"
-          id="inputEmail"
-        />
+        <input type="email" class="form-control" id="inputEmail" />
       </div>
 
       <!-- Telèfon -->
       <div class="mb-3">
         <label>Telèfon</label>
-        <input
-          type="tel"
-          class="form-control"
-          id="inputTel"
-        />
+        <input type="tel" class="form-control" id="inputTel" />
       </div>
       <small>
         Si el teu telèfon és internacional, siusplau, indica-hi també el prefix.
@@ -308,6 +287,22 @@ export default {
     return {
       numPeople: 1,
       validationPeople: Boolean,
+      todayNumber: new Date().getDate(),
+      todayMonth: new Date().getMonth() + 1,
+      todayYear: new Date().getFullYear(),
+      minToday:
+        new Date().getFullYear() +
+        "-" +
+        (new Date().getMonth() + 1) +
+        "-" +
+        new Date().getDate(),
+      todayToday: this.twoDigitDay(new Date()),
+      monthToday: this.twoDigitMonth(new Date()),
+      minToday2: new Date().getFullYear() +
+        "-" +
+        this.twoDigitMonth(new Date()) +
+        "-" +
+        this.twoDigitDay(new Date()),
     };
   },
   watch: {
@@ -321,6 +316,12 @@ export default {
     },
   },
   methods: {
+    twoDigitDay(d) {
+      return (d.getDate() < 10 ? "0" : "") + d.getDate();
+    },
+    twoDigitMonth(d) {
+      return ((d.getMonth() + 1) < 10 ? "0" : "") + (d.getMonth() + 1);
+    },
     validacio() {
       this.validation = "";
 
