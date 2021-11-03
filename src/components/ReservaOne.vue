@@ -44,7 +44,7 @@
             <div class="input-group input-group-lg">
               <input
                 type="number"
-                class="form-control bg-white"
+                class="form-control bg-white inputPeople"
                 id="inputPeople"
                 aria-describedby="inputGroup-sizing-lg"
                 v-model="numPeople"
@@ -425,5 +425,15 @@ export default {
 <style>
 .row {
   margin-right: 0;
+}
+
+.inputPeople {
+  margin-right: 6px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 </style>
