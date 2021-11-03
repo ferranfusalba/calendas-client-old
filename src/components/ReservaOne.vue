@@ -24,53 +24,65 @@
       </div>
     </div>
     <hr />
-    <form>
+    <div class="form-group">
       <!-- Número de persones -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Número de persones</label
-        >
-        <div class="row" style="padding-left: 10px;">
+        <label>Número de persones</label>
+        <div class="row" style="padding-left: 10px">
           <div class="col-2 p-0">
-            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople -= 1" :disabled="numPeople == 1">-</button>
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              v-on:click="numPeople -= 1"
+              :disabled="numPeople == 1"
+            >
+              -
+            </button>
           </div>
           <div class="col-8">
             <div class="input-group input-group-lg">
               <input
                 type="number"
                 class="form-control"
-                id="exampleInputEmail1"
-                aria-label="Sizing example input"
+                id="inputPeople"
                 aria-describedby="inputGroup-sizing-lg"
                 v-model="numPeople"
+                @blur="validacio()"
+                data-disable-touch-keyboard
               />
             </div>
           </div>
           <div class="col-2 p-0">
-            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople += 1" :disabled="numPeople == 12">+</button>
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              v-on:click="numPeople += 1"
+              :disabled="numPeople == 12"
+            >
+              +
+            </button>
           </div>
         </div>
-        <small id="emailHelp" class="form-text">
+        <small class="text-danger">{{ watcherValidation }}</small>
+        <small>
           Per a reserves de més de 12 persones, siusplau, contacteu amb
           nosaltres per telèfon o per correu electrònic.
         </small>
       </div>
+
       <!-- Data -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Selecciona una data</label
-        >
+        <label>Selecciona una data</label>
         <div class="input-group mb-3">
           <input
-            type="number"
+            type="date"
             class="form-control"
-            id="exampleInputEmail1"
-            aria-label="Sizing example input"
+            id="inputDate"
             aria-describedby="inputGroup-sizing-default"
-          />
+          /> <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-calendar-week"></i>
-          </span>
+          </span> -->
         </div>
         <small
           >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
@@ -82,40 +94,39 @@
           </a>
         </small>
       </div>
+
       <!-- Hora -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Selecciona una hora</label
+        <label>Selecciona una hora</label
         >
         <div class="input-group mb-3">
           <input
-            type="number"
+            type="time"
             class="form-control"
-            id="exampleInputEmail1"
-            aria-label="Sizing example input"
+            id="inputTime"
             aria-describedby="inputGroup-sizing-default"
-          />
+          /> <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-clock"></i>
-          </span>
+          </span> -->
         </div>
-        <small id="emailHelp" class="form-text">
+        <small>
           Sols acceptem reserves per a dinars o sopars.
         </small>
       </div>
+
       <!-- Preferència de taula -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Selecciona una preferència de taula</label
+        <label>Selecciona una preferència de taula</label
         >
         <div class="form-check">
           <input
             class="form-check-input"
             type="radio"
             name="flexRadioDefault"
-            id="flexRadioDefault1"
+            id="radioInterior"
           />
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label class="form-check-label" for="radioInterior">
             Interior
           </label>
         </div>
@@ -124,60 +135,59 @@
             class="form-check-input"
             type="radio"
             name="flexRadioDefault"
-            id="flexRadioDefault2"
+            id="radioTerrassa"
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label class="form-check-label" for="radioTerrassa">
             Terrassa
           </label>
         </div>
       </div>
       <hr />
+
       <!-- Nom -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nom</label>
+        <label>Nom</label>
         <input
           type="text"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          id="inputName"
         />
       </div>
+
       <!-- Cognoms -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Cognoms</label>
+        <label>Cognoms</label>
         <input
           type="text"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          id="inputSurname"
         />
       </div>
+
       <!-- Correu electrònic -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label"
-          >Correu electrònic</label
-        >
+        <label>Correu electrònic</label>
         <input
           type="email"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          id="inputEmail"
         />
       </div>
+
       <!-- Telèfon -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Telèfon</label>
+        <label>Telèfon</label>
         <input
-          type="number"
+          type="tel"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          id="inputTel"
         />
       </div>
-      <small id="emailHelp" class="form-text">
+      <small>
         Si el teu telèfon és internacional, siusplau, indica-hi també el prefix.
       </small>
       <hr />
+
       <!-- Observacions -->
       <small
         >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de nens,
@@ -186,7 +196,6 @@
       <div class="mb-3 form-floating">
         <textarea
           class="form-control"
-          placeholder="Leave a comment here"
           id="floatingTextarea2"
           style="height: 100px"
         ></textarea>
@@ -203,11 +212,12 @@
       <h4>Un apunt final</h4>
       <small
         >No utilitzarem les teves dades per a finalitats comercials ni tampoc en
-        realitzarem cap cessió a tercers. <br> Les teves dades seran emmagatzemades
-        un màxim de 72 hores a la nostra base de dades, comptant des de l'hora
-        d'arribada al restaurant. <br> Durant aquestes 72 hores podem utilitzar les
-        teves dades per a contactar-te en cas que sigui necessari (recordatori,
-        cancel·lació o altres motius).</small
+        realitzarem cap cessió a tercers. <br />
+        Les teves dades seran emmagatzemades un màxim de 72 hores a la nostra
+        base de dades, comptant des de l'hora d'arribada al restaurant. <br />
+        Durant aquestes 72 hores podem utilitzar les teves dades per a
+        contactar-te en cas que sigui necessari (recordatori, cancel·lació o
+        altres motius).</small
       >
       <br />
       <br />
@@ -218,7 +228,7 @@
         type="button"
         class="btn btn-info"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#modalLegal"
       >
         Llegir les condicions legals
       </button>
@@ -226,15 +236,15 @@
       <!-- Modal -->
       <div
         class="modal fade"
-        id="exampleModal"
+        id="modalLegal"
         tabindex="-1"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="modalLegalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
+              <h5 class="modal-title" id="modalLegalLabel">
                 Condicions legals
               </h5>
               <button
@@ -278,36 +288,56 @@
       <br />
 
       <!-- Botó confirm & enviar -->
-      <button type="button" class="btn btn-lg btn-success">Enviar</button>
       <br />
-      <small>
-        Un cop rebem les teves dades, t'enviarem un missatge per correu
-        electrònic si la teva reserva ha estat confirmada.<br />
-        Si finalment no pots assistir a la teva reserva, si us plau, contacta
-        amb nosaltres per a cancel·lar-la.
-      </small>
-    </form>
-    <br />
-    <br />
-    <PageNav></PageNav>
+      <button
+        type="button"
+        class="btn btn-lg btn-success"
+        @click="showValidation()"
+      >
+        Enviar
+      </button>
+      <br />
+    </div>
   </div>
 </template>
 
-<script lang="js">
-import PageNav from "@/components/PageNav.vue";
-
+<script>
 export default {
-  name: "Reserva1",
-  props: [],
-  components: {
-    PageNav,
-  },
+  name: "ReservaOne",
   data() {
-      return {
-          numPeople: 1,
-          maxPeople: 12,
+    return {
+      numPeople: 1,
+      validationPeople: Boolean,
+    };
+  },
+  watch: {
+    numPeople() {
+      if (this.numPeople >= 1 && this.numPeople <= 12) {
+        this.watcherValidation = "";
+      } else {
+        this.watcherValidation =
+          "Siusplau, introdueix un nombre entre l'1 i el 12";
       }
-  }
+    },
+  },
+  methods: {
+    validacio() {
+      this.validation = "";
+
+      if (this.numPeople >= 1 && this.numPeople <= 12) {
+        this.validationPeople = true;
+      } else {
+        this.validationPeople = false;
+      }
+    },
+    showValidation() {
+      if (this.validationPeople == true) {
+        alert("TRUE");
+      } else if (this.validationPeople == false) {
+        alert("FALSE");
+      }
+    },
+  },
 };
 </script>
 
