@@ -70,8 +70,37 @@
         </small>
       </div>
 
-      <!-- Data -->
+      <!-- Data manual -->
       <div class="mb-3">
+        <h6>MANUAL</h6>
+        <label>Selecciona una data</label>
+        <div class="input-group mb-3">
+          <input
+            type="date"
+            class="form-control"
+            id="inputDate"
+            aria-describedby="inputGroup-sizing-default"
+            :min="minToday2"
+          />
+          <!--
+          <span class="input-group-text" id="inputGroup-sizing-default">
+            <i class="bi bi-calendar-week"></i>
+          </span> -->
+        </div>
+        <small
+          >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
+          <a
+            href="https://g.page/notoriousjazzcafe?share"
+            class="tdn"
+            target="_blank"
+            >Consulta el nostre horari actualitzat a Google Maps
+          </a>
+        </small>
+      </div>
+
+      <!-- Data pikaday -->
+      <div class="mb-3">
+        <h6>PIKADAY</h6>
         <label>Selecciona una data</label>
         <div class="input-group mb-3">
           <input
