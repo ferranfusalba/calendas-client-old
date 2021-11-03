@@ -32,7 +32,7 @@
         >
         <div class="row" style="padding-left: 10px;">
           <div class="col-2 p-0">
-            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople -= 1">-</button>
+            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople -= 1" :disabled="numPeople == 1">-</button>
           </div>
           <div class="col-8">
             <div class="input-group input-group-lg">
@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="col-2 p-0">
-            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople += 1">+</button>
+            <button type="button" class="btn btn-success btn-lg" v-on:click="numPeople += 1" :disabled="numPeople == 12">+</button>
           </div>
         </div>
         <small id="emailHelp" class="form-text">
@@ -132,9 +132,19 @@
         </div>
       </div>
       <hr />
-      <!-- Nom i cognoms -->
+      <!-- Nom -->
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Nom i cognoms</label>
+        <label for="exampleInputEmail1" class="form-label">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <!-- Cognoms -->
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Cognoms</label>
         <input
           type="text"
           class="form-control"
