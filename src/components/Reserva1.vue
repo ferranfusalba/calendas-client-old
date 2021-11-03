@@ -200,11 +200,12 @@
       <small>S'accepten gossos de companyia.</small><br />
       <br />
       <!-- Petit missatge legal -->
+      <h4>Un apunt final</h4>
       <small
         >No utilitzarem les teves dades per a finalitats comercials ni tampoc en
-        realitzarem cap cessió a tercers. Les teves dades seran emmagatzemades
+        realitzarem cap cessió a tercers. <br> Les teves dades seran emmagatzemades
         un màxim de 72 hores a la nostra base de dades, comptant des de l'hora
-        d'arribada al restaurant. Durant aquestes 72 hores podem utilitzar les
+        d'arribada al restaurant. <br> Durant aquestes 72 hores podem utilitzar les
         teves dades per a contactar-te en cas que sigui necessari (recordatori,
         cancel·lació o altres motius).</small
       >
