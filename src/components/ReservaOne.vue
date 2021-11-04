@@ -67,7 +67,15 @@
         <small class="text-danger">{{ watcherValidation }}</small>
         <small>
           Per a reserves de més de 12 persones, siusplau, contacteu amb
-          nosaltres per <a href="tel:+34937688731" target="_blank" class="tdn">telèfon</a> o per <a href="mailto:notoriousjazzcafe@hotmail.com" target="_blank" class="tdn">correu electrònic</a>.
+          nosaltres per
+          <a href="tel:+34937688731" target="_blank" class="tdn">telèfon</a> o
+          per
+          <a
+            href="mailto:notoriousjazzcafe@hotmail.com"
+            target="_blank"
+            class="tdn"
+            >correu electrònic</a
+          >.
         </small>
       </div>
 
@@ -203,11 +211,32 @@
       <!-- Telèfon -->
       <div class="mb-3">
         <label>Telèfon</label>
-        <input type="tel" class="form-control" id="inputTel" />
+        <div class="row" style="padding-left: 10px">
+          <div class="col-4 foraPL">
+            <select class="form-control">
+              <option
+                v-for="option in intPhoneCodes"
+                v-bind:value="option.value"
+                :key="option"
+                id="inputPhone"
+              :disabled="option.disabled"
+              :selected="option.selected"
+              >
+                {{ option.code }}
+              </option>
+            </select>
+          </div>
+          <div class="col-8 foraPR">
+            <div class="input-group">
+              <input type="tel" class="form-control" id="inputTel" />
+            </div>
+          </div>
+        </div>
       </div>
+      <!--
       <small>
         Si el teu telèfon és internacional, siusplau, indica-hi també el prefix.
-      </small>
+      </small> -->
       <hr />
 
       <!-- Observacions -->
@@ -348,40 +377,45 @@ export default {
         "-" +
         this.twoDigitDay(new Date()),
       hourOptions: [
-        { text: "Dinars", disabled: true},
-        { text: "12:30"},
-        { text: "12:45"},
-        { text: "13:00"},
-        { text: "13:15"},
-        { text: "13:30"},
-        { text: "13:45"},
-        { text: "14:00"},
-        { text: "14:15"},
-        { text: "14:30"},
-        { text: "14:45"},
-        { text: "15:00"},
-        { text: "15:15"},
-        { text: "15:30"},
-        { text: "15:45"},
-        { text: "16:00"},
-        { text: "16:15"},
-        { text: "16:30"},
-        { text: "Sopars", disabled: true},
-        { text: "19:00"},
-        { text: "19:15"},
-        { text: "19:30"},
-        { text: "19:45"},
-        { text: "20:00"},
-        { text: "20:15"},
-        { text: "20:30"},
-        { text: "20:45"},
-        { text: "21:00"},
-        { text: "21:15"},
-        { text: "21:30"},
-        { text: "21:45"},
-        { text: "22:00"},
-        { text: "22:15"},
-        { text: "22:30"},
+        { text: "Dinars", disabled: true },
+        { text: "12:30" },
+        { text: "12:45" },
+        { text: "13:00" },
+        { text: "13:15" },
+        { text: "13:30" },
+        { text: "13:45" },
+        { text: "14:00" },
+        { text: "14:15" },
+        { text: "14:30" },
+        { text: "14:45" },
+        { text: "15:00" },
+        { text: "15:15" },
+        { text: "15:30" },
+        { text: "15:45" },
+        { text: "16:00" },
+        { text: "16:15" },
+        { text: "16:30" },
+        { text: "Sopars", disabled: true },
+        { text: "19:00" },
+        { text: "19:15" },
+        { text: "19:30" },
+        { text: "19:45" },
+        { text: "20:00" },
+        { text: "20:15" },
+        { text: "20:30" },
+        { text: "20:45" },
+        { text: "21:00" },
+        { text: "21:15" },
+        { text: "21:30" },
+        { text: "21:45" },
+        { text: "22:00" },
+        { text: "22:15" },
+        { text: "22:30" },
+      ],
+      intPhoneCodes: [
+        { code: "Prefix", disabled: true, selected: true},
+        { code: "🇪🇸 +34 (Espanya)" },
+        { code: "🇦🇩 +376 (Andorra)" },
       ],
     };
   },
@@ -435,5 +469,15 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.foraPL {
+  padding-left: 0;
+  padding-right: 6px;
+}
+
+.foraPR {
+  padding-right: 0;
+  padding-left: 6px;
 }
 </style>
