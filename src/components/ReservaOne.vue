@@ -188,45 +188,46 @@
           <label class="form-check-label" for="radioTerrassa"> Terrassa </label>
         </div>
       </div>
-      <hr />
 
       <!-- Nom -->
       <div class="mb-3">
         <label>Nom</label>
-        <input type="text" class="form-control" id="inputName" />
+        <input type="text" class="form-control mt-1 mb-1" id="inputName" />
       </div>
 
       <!-- Cognoms -->
       <div class="mb-3">
         <label>Cognoms</label>
-        <input type="text" class="form-control" id="inputSurname" />
+        <input type="text" class="form-control mt-1 mb-1" id="inputSurname" />
       </div>
 
       <!-- Correu electrònic -->
       <div class="mb-3">
         <label>Correu electrònic</label>
-        <input type="email" class="form-control" id="inputEmail" />
+        <input type="email" class="form-control mt-1 mb-1" id="inputEmail" />
       </div>
 
       <!-- Telèfon -->
       <div class="mb-3">
         <label>Telèfon</label>
-        <div class="row" style="padding-left: 10px">
+        <div class="row mt-1 mb-1" style="padding-left: 10px">
           <div class="col-4 foraPL">
+            <small>Prefix internacional</small>
             <select class="form-control">
               <option
                 v-for="option in intPhoneCodes"
                 v-bind:value="option.value"
                 :key="option"
                 id="inputPhone"
-              :disabled="option.disabled"
-              :selected="option.selected"
+                :disabled="option.disabled"
+                :selected="option.selected"
               >
                 {{ option.code }}
               </option>
             </select>
           </div>
           <div class="col-8 foraPR">
+            <small>Telèfon</small>
             <div class="input-group">
               <input type="tel" class="form-control" id="inputTel" />
             </div>
@@ -237,7 +238,6 @@
       <small>
         Si el teu telèfon és internacional, siusplau, indica-hi també el prefix.
       </small> -->
-      <hr />
 
       <!-- Observacions -->
       <small
@@ -246,31 +246,41 @@
       >
       <div class="mb-3 form-floating">
         <textarea
-          class="form-control"
+          class="form-control mt-1 mb-1"
           id="floatingTextarea2"
           style="height: 100px"
         ></textarea>
         <label for="floatingTextarea2">Observacions</label>
+        <small
+          >Tant la nostra entrada, espais com serveis estan adaptats per a
+          persones amb mobilitat reduïda (PMR).</small
+        >
+        <br />
+        <small>S'accepten gossos de companyia.</small><br />
+        <br />
       </div>
-      <small
-        >Tant la nostra entrada, espais com serveis estan adaptats per a
-        persones amb mobilitat reduïda (PMR).</small
-      >
-      <br />
-      <small>S'accepten gossos de companyia.</small><br />
-      <br />
       <!-- Petit missatge legal -->
       <h4>Un apunt final</h4>
-      <small
-        >No utilitzarem les teves dades per a finalitats comercials ni tampoc en
-        realitzarem cap cessió a tercers. <br />
-        Les teves dades seran emmagatzemades un màxim de 72 hores a la nostra
-        base de dades, comptant des de l'hora d'arribada al restaurant. <br />
-        Durant aquestes 72 hores podem utilitzar les teves dades per a
-        contactar-te en cas que sigui necessari (recordatori, cancel·lació o
-        altres motius).</small
-      >
       <br />
+      <p class="text-start">
+        <small>
+          👉 No utilitzarem les teves dades per a finalitats comercials ni
+          tampoc en realitzarem cap cessió a tercers.
+        </small>
+      </p>
+      <p class="text-start">
+        <small>
+          🗄️ Les teves dades seran emmagatzemades un màxim de 72 hores a la
+          nostra base de dades, comptant des de l'hora d'arribada al restaurant.
+        </small>
+      </p>
+      <p class="text-start">
+        <small>
+          📲 Durant aquestes 72 hores podem utilitzar les teves dades per a
+          contactar-te en cas que sigui necessari (recordatori, cancel·lació o
+          altres motius).
+        </small>
+      </p>
       <br />
 
       <!-- Acceptar legal -->
@@ -413,9 +423,56 @@ export default {
         { text: "22:30" },
       ],
       intPhoneCodes: [
-        { code: "Prefix", disabled: true, selected: true},
-        { code: "🇪🇸 +34 (Espanya)" },
+        { code: "Prefix", disabled: true },
+        { code: "Europa", disabled: true },
+        { code: "🇬🇷 +30 (Ελλάδα)" },
+        { code: "🇳🇱 +31 (Nederland)" },
+        { code: "🇧🇪 +32 (Belgique / België)" },
+        { code: "🇫🇷 +33 (France)" },
+        { code: "🇪🇸 +34 (España)", selected: true },
+        { code: "🇬🇮 +350 (Gibraltar)" },
+        { code: "🇵🇹 +351 (Portugal)" },
+        { code: "🇱🇺 +352 (Luxembourg)" },
+        { code: "🇮🇪 +353 (Éire)" },
+        { code: "🇮🇸 +354 (Ísland)" },
+        { code: "🇦🇱 +355 (Albania / Shqipëri)" },
+        { code: "🇲🇹 +356 (Malta)" },
+        { code: "🇨🇾 +357 (Κυπριακή Δημοκρατία / Cyprus)" },
+        { code: "🇫🇮 +358 (Suomi)" },
+        { code: "🇧🇬 +359 (България / Bulgaria)" },
+        { code: "🇭🇺 +36 (Magyarország / Hungary)" },
+        { code: "🇱🇹 +370 (Lietuva)" },
+        { code: "🇱🇻 +371 (Latvija / Latveja / Leţmō)" },
+        { code: "🇪🇪 +372 (Eesti)" },
+        { code: "🇲🇩 +373 (Moldova)" },
+        { code: "🇦🇲 +374 (Հայաստանի Հանրապետություն / Armenia)" },
+        { code: "🇧🇾 +375 (Белару́сь / Belarus)" },
         { code: "🇦🇩 +376 (Andorra)" },
+        { code: "🇲🇨 +377 (Mùnegu / Monaco)" },
+        { code: "🇸🇲 +378 (San Marein / San Marino)" },
+        { code: "🇺🇦 +380 (Україна / Ukraine)" },
+        { code: "🇷🇸 +381 (Србија / Serbia)" },
+        { code: "🇲🇪 +382 (Crna Gora / Црна Гора / Montenegro)" },
+        { code: "🇽🇰 +383 (Kosovo)" },
+        { code: "🇭🇷 +385 (Hrvatska / Croatia)" },
+        { code: "🇸🇮 +386 (Slovenija / Slovenia)" },
+        { code: "🇧🇦 +387 (Bosna i Hercegovina / Босна и Херцеговина)" },
+        { code: "🇲🇰 +389 (Северна Македонија / North Macedonia)" },
+        { code: "🇮🇹 +39 (Italia)" },
+        { code: "🇷🇴 +40 (România)" },
+        { code: "🇨🇭 +41 (Schweiz / Suisse / Svizzera / Svizra)" },
+        { code: "🇨🇿 +420 (Česká republika)" },
+        { code: "🇸🇰 +421 (Slovensko)" },
+        { code: "🇱🇮 +423 (Liechtenstein)" },
+        { code: "🇦🇹 +43 (Österreich)" },
+        { code: "🇬🇧 +44 (United Kingdom)" },
+        { code: "🇩🇰 +45 (Danmark)" },
+        { code: "🇸🇪 +46 (Sverige)" },
+        { code: "🇳🇴 +47 (Norge)" },
+        { code: "🇵🇱 +48 (Polska)" },
+        { code: "🇩🇪 +49 (Deutschland)" },
+        { code: "World", disabled: true },
+        { code: "🇺🇸🇨🇦 +1 (USA, Canada)" },
       ],
     };
   },
