@@ -212,7 +212,7 @@
         <label>Telèfon</label>
         <div class="row mt-1 mb-1" style="padding-left: 10px">
           <div class="col-4 foraPL">
-            <small>Prefix internacional</small>
+            <small>Prefix int.</small>
             <select class="form-control">
               <option
                 v-for="option in intPhoneCodes"
