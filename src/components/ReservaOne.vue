@@ -64,7 +64,7 @@
             </button>
           </div>
         </div>
-        <small class="text-danger">{{ watcherValidation }}</small>
+        <small class="text-danger">{{ watcherPeopleValidation }}</small>
         <small>
           Per a reserves de més de 12 persones, siusplau, contacteu amb
           nosaltres per
@@ -80,6 +80,7 @@
       </div>
 
       <!-- Data manual -->
+      <!--
       <div class="mb-3">
         <h6>MANUAL</h6>
         <label>Selecciona una data</label>
@@ -91,10 +92,6 @@
             aria-describedby="inputGroup-sizing-default"
             :min="minToday2"
           />
-          <!--
-          <span class="input-group-text" id="inputGroup-sizing-default">
-            <i class="bi bi-calendar-week"></i>
-          </span> -->
         </div>
         <small
           >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
@@ -105,7 +102,7 @@
             >Consulta el nostre horari actualitzat a Google Maps
           </a>
         </small>
-      </div>
+      </div> -->
 
       <!-- Data pikaday -->
       <div class="mb-3">
@@ -169,50 +166,117 @@
       <!-- Preferència de taula -->
       <div class="mb-3">
         <label>Selecciona una preferència de taula</label>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="radioInterior"
-          />
-          <label class="form-check-label" for="radioInterior"> Interior </label>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="radioTerrassa"
-          />
-          <label class="form-check-label" for="radioTerrassa"> Terrassa </label>
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <div id="v-model-radiobutton">
+              <input
+                type="radio"
+                id="interior"
+                value="Interior"
+                v-model="prefTaula"
+                @blur="validacio()"
+              />
+              <label for="interior">Interior</label>
+              <br />
+              <input
+                type="radio"
+                id="terrassa"
+                value="Terrassa"
+                v-model="prefTaula"
+                @blur="validacio()"
+              />
+              <label for="terrassa">Terrassa</label>
+              <br />
+            </div>
+          </div>
+          <div class="col-4"></div>
+          <small :style="'color: transparent;'"
+          :class="
+            watcherGivenPreferenceStatus == true
+              ? 'text-success'
+              : watcherGivenPreferenceStatus == false
+              ? 'text-danger'
+              : ''
+          ">{{watcherGivenPreference}}</small>
         </div>
       </div>
 
       <!-- Nom -->
       <div class="mb-3">
         <label>Nom</label>
-        <input type="text" class="form-control mt-1 mb-1" id="inputName" />
+        <input
+          type="text"
+          class="form-control mt-1 mb-1"
+          id="inputName"
+          v-model="givenName"
+          @blur="validacio()"
+        />
+        <small
+          :style="'color: transparent;'"
+          :class="
+            watcherGivenNameStatus == true
+              ? 'text-success'
+              : watcherGivenNameStatus == false
+              ? 'text-danger'
+              : ''
+          "
+          >{{ watcherGivenName }}</small
+        >
       </div>
 
       <!-- Cognoms -->
       <div class="mb-3">
         <label>Cognoms</label>
-        <input type="text" class="form-control mt-1 mb-1" id="inputSurname" />
+        <input
+          type="text"
+          class="form-control mt-1 mb-1"
+          id="inputSurname"
+          v-model="givenSurname"
+          @blur="validacio()"
+        />
+        <small
+          :style="'color: transparent;'"
+          :class="
+            watcherGivenSurnameStatus == true
+              ? 'text-success'
+              : watcherGivenSurnameStatus == false
+              ? 'text-danger'
+              : ''
+          "
+          >{{ watcherGivenSurname }}</small
+        >
       </div>
 
       <!-- Correu electrònic -->
       <div class="mb-3">
         <label>Correu electrònic</label>
-        <input type="email" class="form-control mt-1 mb-1" id="inputEmail" />
+        <input
+          type="email"
+          class="form-control mt-1 mb-1"
+          id="inputEmail"
+          v-model="givenEmail"
+          @blur="validacio()"
+        />
+        <small
+          :style="'color: transparent;'"
+          :class="
+            watcherGivenEmailStatus == true
+              ? 'text-success'
+              : watcherGivenEmailStatus == false
+              ? 'text-danger'
+              : ''
+          "
+          >{{ watcherGivenEmail }}</small
+        >
       </div>
 
       <!-- Telèfon -->
       <div class="mb-3">
-        <label>Telèfon</label>
+        <!-- <label>Telèfon</label> -->
         <div class="row mt-1 mb-1" style="padding-left: 10px">
           <div class="col-4 foraPL">
-            <small>Prefix int.</small>
+            <label>Prefix int.</label>
             <select class="form-control">
               <option
                 v-for="option in intPhoneCodes"
@@ -227,11 +291,28 @@
             </select>
           </div>
           <div class="col-8 foraPR">
-            <small>Telèfon</small>
+            <label>Telèfon</label>
             <div class="input-group">
-              <input type="tel" class="form-control" id="inputTel" />
+              <input
+                type="tel"
+                class="form-control"
+                id="inputTel"
+                v-model="givenPhone"
+                @blur="validacio()"
+              />
             </div>
           </div>
+          <small
+            :style="'color: transparent;'"
+            :class="
+              watcherGivenPhoneStatus == true
+                ? 'text-success'
+                : watcherGivenPhoneStatus == false
+                ? 'text-danger'
+                : ''
+            "
+            >{{ watcherGivenPhone }}</small
+          >
         </div>
       </div>
       <!--
@@ -262,19 +343,19 @@
       <!-- Petit missatge legal -->
       <h4>Un apunt final</h4>
       <br />
-      <p class="text-start">
+      <p class="text-start margins">
         <small>
           👉 No utilitzarem les teves dades per a finalitats comercials ni
           tampoc en realitzarem cap cessió a tercers.
         </small>
       </p>
-      <p class="text-start">
+      <p class="text-start margins">
         <small>
           🗄️ Les teves dades seran emmagatzemades un màxim de 72 hores a la
           nostra base de dades, comptant des de l'hora d'arribada al restaurant.
         </small>
       </p>
-      <p class="text-start">
+      <p class="text-start margins">
         <small>
           📲 Durant aquestes 72 hores podem utilitzar les teves dades per a
           contactar-te en cas que sigui necessari (recordatori, cancel·lació o
@@ -285,14 +366,16 @@
 
       <!-- Acceptar legal -->
       <!-- Button trigger modal -->
-      <button
-        type="button"
-        class="btn btn-info"
-        data-bs-toggle="modal"
-        data-bs-target="#modalLegal"
-      >
-        Llegir les condicions legals
-      </button>
+      <div class="mb-2">
+        <button
+          type="button"
+          class="btn btn-info"
+          data-bs-toggle="modal"
+          data-bs-target="#modalLegal"
+        >
+          Llegir les condicions legals
+        </button>
+      </div>
 
       <!-- Modal -->
       <div
@@ -334,30 +417,45 @@
         </div>
       </div>
       <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckChecked"
-          checked
-        />
-        <label class="form-check-label" for="flexCheckChecked">
-          Accepto les condicions d'ús, la política de privacitat i el tractament
-          de dades personals.
-        </label>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckChecked"
+              checked
+              v-model="checkLegal"
+            />
+            <label class="form-check-label" for="flexCheckChecked">
+              Accepto les condicions d'ús, la política de privacitat i el
+              tractament de dades personals.
+            </label>
+            
+          </div>
+          <div class="col-2"></div>
+          <small :style="'color: transparent;'"
+            :class="
+              watcherCheckLegalStatus == true
+                ? 'text-success'
+                : watcherCheckLegalStatus == false
+                ? 'text-danger'
+                : ''
+            ">{{watcherCheckLegal}}</small>
+        </div>
       </div>
-      <br />
 
       <!-- Botó confirm & enviar -->
-      <br />
-      <button
-        type="button"
-        class="btn btn-lg btn-success"
-        @click="showValidation()"
-      >
-        Enviar
-      </button>
-      <br />
+      <div class="mt-4 mb-4">
+        <button
+          type="button"
+          class="btn btn-lg btn-success"
+          @click="showValidation()"
+        >
+          Enviar
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -367,8 +465,10 @@ export default {
   name: "ReservaOne",
   data() {
     return {
+      //Número de persones
       numPeople: 1,
       validationPeople: true,
+      //Data
       todayNumber: new Date().getDate(),
       todayMonth: new Date().getMonth() + 1,
       todayYear: new Date().getFullYear(),
@@ -386,6 +486,7 @@ export default {
         this.twoDigitMonth(new Date()) +
         "-" +
         this.twoDigitDay(new Date()),
+      //Hora
       hourOptions: [
         { text: "Dinars", disabled: true },
         { text: "12:30" },
@@ -422,6 +523,32 @@ export default {
         { text: "22:15" },
         { text: "22:30" },
       ],
+      //Pref. taula
+      prefTaula: "",
+      validationTaula: false,
+      watcherGivenPreference: "/",
+      watcherGivenPreferenceStatus: Boolean,
+      //Nom
+      givenName: "",
+      validationName: false,
+      watcherGivenName: "/",
+      watcherGivenNameStatus: Boolean,
+      //Cognoms
+      givenSurname: "",
+      validationSurname: false,
+      watcherGivenSurname: "/",
+      watcherGivenSurnameStatus: Boolean,
+      //Email
+      givenEmail: "",
+      validationEmail: false,
+      watcherGivenEmail: "/",
+      watcherGivenEmailStatus: Boolean,
+      //Tlf
+      givenPhone: "",
+      validationPhone: false,
+      watcherGivenPhone: "/",
+      watcherGivenPhoneStatus: Boolean,
+      phoneWatcher: String,
       intPhoneCodes: [
         { code: "Prefix", disabled: true },
         { code: "Europa", disabled: true },
@@ -480,17 +607,88 @@ export default {
         { code: "Rest of the World", disabled: true },
         { code: "Indicate your prefix code in the next camp" },
       ],
+      //Obs
+      //Condicions legals
+      checkLegal: false,
+      watcherCheckLegal: "/",
+      watcherCheckLegalStatus: Boolean,
     };
   },
   watch: {
     numPeople() {
       if (this.numPeople >= 1 && this.numPeople <= 12) {
-        this.watcherValidation = "";
+        this.watcherPeopleValidation = "";
       } else {
-        this.watcherValidation =
+        this.watcherPeopleValidation =
           "Siusplau, introdueix un nombre entre l'1 i el 12";
       }
     },
+    prefTaula() {
+      if (this.prefTaula == "") {
+        this.watcherGivenPreference = "Siusplau, indica una preferència de taula"
+        this.watcherGivenPreferenceStatus = false;
+      } else if (this.prefTaula == "Interior" || this.prefTaula == "Terrassa") {
+        this.watcherGivenPreference = "Bona elecció!"
+        this.watcherGivenPreferenceStatus = true;
+      }
+    },
+    givenName() {
+      //Recordatori preferència de taula, introduït abans del nom es mostrarà el missatge d'error en cas que no s'hagi seleccionat taula
+      if (this.prefTaula == "") {
+        this.watcherGivenPreference = "Siusplau, indica una preferència de taula"
+        this.watcherGivenPreferenceStatus = false;
+      }
+      //if i no else if
+      if (this.givenName == "") {
+        this.watcherGivenName = "Siusplau, introdueix un nom";
+        this.watcherGivenNameStatus = false;
+      } else if (this.givenName.match(/\p{L}/)) {
+        this.watcherGivenName = "Nom validat correctament";
+        this.watcherGivenNameStatus = true;
+      }
+    },
+    givenSurname() {
+      if (this.givenSurname == "") {
+        this.watcherGivenSurname = "Siusplau, introdueix un cognom";
+        this.watcherGivenSurnameStatus = false;
+      } else if (this.givenSurname.match(/\p{L}/)) {
+        this.watcherGivenSurname = "Cognom validat correctament";
+        this.watcherGivenSurnameStatus = true;
+      }
+    },
+    givenEmail() {
+      if (this.givenEmail == "") {
+        this.watcherGivenEmail = "Siusplau, introdueix un email";
+        this.watcherGivenEmailStatus = false;
+      } else if (
+        this.givenEmail.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+      ) {
+        this.watcherGivenEmail = "Email validat correctament";
+        this.watcherGivenEmailStatus = true;
+      } else if (
+        !this.givenEmail.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+      ) {
+        this.watcherGivenEmail = "Email no vàlid";
+        this.watcherGivenEmailStatus = false;
+      } else {
+        this.watcherGivenEmail = "holahola";
+      }
+    },
+    givenPhone() {
+      if (this.givenPhone == "") {
+        this.watcherGivenPhone = "Siusplau, introdueix un telèfon";
+        this.watcherGivenPhoneStatus = false;
+      }
+    },
+    checkLegal() {
+      if (this.checkLegal == false) {
+        this.watcherCheckLegal = "Sense acceptar aquesta casella no es pot enviar el formulari";
+        this.watcherCheckLegalStatus == false;
+      } else if (this.checkLegal == true) {
+        this.watcherCheckLegal = "Has acceptat les condicions legals";
+        this.watcherCheckLegalStatus == true;
+      }
+    }
   },
   methods: {
     twoDigitDay(d) {
@@ -501,18 +699,74 @@ export default {
     },
     validacio() {
       this.validation = "";
-
+      //Validació Número de Persones
       if (this.numPeople >= 1 && this.numPeople <= 12) {
         this.validationPeople = true;
       } else {
         this.validationPeople = false;
       }
+      //Validació Data
+      //Validació Check Taula
+      if (this.prefTaula == "") {
+        this.validationTaula = false;
+      } else if (this.prefTaula == "Interior" || this.prefTaula == "Terrassa") {
+        this.validationTaula = true;
+      }
+      //Validació Nom
+      if (this.givenName == "") {
+        this.validationName = false;
+      } else if (this.givenName != "") {
+        this.validationName = true;
+      }
+      //Validació Cognom
+      if (this.givenSurname == "") {
+        this.validationSurname = false;
+      } else if (this.givenSurname != "") {
+        this.validationSurname = true;
+      }
+      //Validació Email
+      if (this.givenEmail == "") {
+        this.validationEmail = false;
+      } else if (
+        this.givenEmail.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
+      ) {
+        this.validationEmail = true;
+      } else {
+        this.validationEmail = false;
+      }
+      //Validació Phone
+      if (this.givenPhone == "") {
+        this.validationPhone = false;
+      } else if (this.givenPhone.match(/\d+/g)) {
+        this.validationPhone = true;
+      } else {
+        this.validationPhone = false;
+      }
+      //Validació Check Legal
     },
     showValidation() {
-      if (this.validationPeople == true) {
+      if (
+        this.validationPeople &&
+        this.validationTaula &&
+        this.validationName &&
+        this.validationSurname &&
+        this.validationEmail &&
+        this.validationPhone &&
+        this.checkLegal == true
+      ) {
         alert("TRUE");
-      } else if (this.validationPeople == false) {
+      } else if (
+        this.validationPeople &&
+        this.validationTaula &&
+        this.validationName &&
+        this.validationSurname &&
+        this.validationEmail &&
+        this.validationPhone &&
+        this.checkLegal == false
+      ) {
         alert("FALSE");
+      } else {
+        alert("ELSE");
       }
     },
   },
@@ -542,5 +796,10 @@ export default {
 .foraPR {
   padding-right: 0;
   padding-left: 6px;
+}
+
+.margins {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
