@@ -745,9 +745,6 @@ export default {
         return false;
       }
     },
-    getInputVal(id) {
-      return document.getElementById(id).value;
-    },
   },
 };
 </script>
