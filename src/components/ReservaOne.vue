@@ -1,86 +1,61 @@
 <template>
   <div>
-    <!--
-    <h2>Selecciona rest.</h2>
-    <div class="card mb-3">
-      <img src="" class="card-img-top" alt="" />
-      <div class="card-body">
-        <h5 class="card-title">Notorious Jazz Café</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <img src="" class="card-img-top" alt="" />
-      <div class="card-body">
-        <h5 class="card-title">Notorious Piano Bar</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-    <hr /> -->
-    <div class="form-group">
-      <!-- Número de persones -->
-      <div class="mb-3">
-        <label>Número de persones</label>
-        <div class="row" style="padding-left: 10px">
-          <div class="col-2 p-0">
-            <button
-              type="button"
-              class="btn btn-success btn-lg"
-              v-on:click="numPeople -= 1"
-              :disabled="numPeople == 1"
-            >
-              -
-            </button>
-          </div>
-          <div class="col-8">
-            <div class="input-group input-group-lg">
-              <input
-                type="number"
-                class="form-control bg-white inputPeople"
-                id="inputPeople"
-                aria-describedby="inputGroup-sizing-lg"
-                v-model="numPeople"
-                @blur="validacio()"
-                readonly
-              />
+    <div class="form-group mt-4">
+      <form class="formReserva">
+        <!-- Número de persones -->
+        <div class="mb-3">
+          <label>Número de persones</label>
+          <div class="row" style="padding-left: 10px">
+            <div class="col-2 p-0">
+              <button
+                type="button"
+                class="btn btn-success btn-lg mt-1 mb-1"
+                v-on:click="numPeople -= 1"
+                :disabled="numPeople == 1"
+              >
+                -
+              </button>
+            </div>
+            <div class="col-8">
+              <div class="input-group input-group-lg">
+                <input
+                  type="number"
+                  class="form-control bg-white inputPeople mt-1 mb-1"
+                  id="inputPeople"
+                  aria-describedby="inputGroup-sizing-lg"
+                  v-model="numPeople"
+                  @blur="validacio()"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="col-2 p-0">
+              <button
+                type="button"
+                class="btn btn-success btn-lg mt-1 mb-1"
+                v-on:click="numPeople += 1"
+                :disabled="numPeople == 12"
+              >
+                +
+              </button>
             </div>
           </div>
-          <div class="col-2 p-0">
-            <button
-              type="button"
-              class="btn btn-success btn-lg"
-              v-on:click="numPeople += 1"
-              :disabled="numPeople == 12"
-            >
-              +
-            </button>
-          </div>
+          <small>
+            Per a reserves de més de 12 persones, siusplau, contacteu amb
+            nosaltres per
+            <a href="tel:+34937688731" target="_blank" class="tdn">telèfon</a> o
+            per
+            <a
+              href="mailto:notoriousjazzcafe@hotmail.com"
+              target="_blank"
+              class="tdn"
+              >correu electrònic</a
+            >.
+          </small>
         </div>
-        <small class="text-danger">{{ watcherPeopleValidation }}</small>
-        <small>
-          Per a reserves de més de 12 persones, siusplau, contacteu amb
-          nosaltres per
-          <a href="tel:+34937688731" target="_blank" class="tdn">telèfon</a> o
-          per
-          <a
-            href="mailto:notoriousjazzcafe@hotmail.com"
-            target="_blank"
-            class="tdn"
-            >correu electrònic</a
-          >.
-        </small>
-      </div>
 
-      <!-- Data manual -->
-      <!--
+        <!-- Data manual -->
+        <!--
       <div class="mb-3">
         <h6>MANUAL</h6>
         <label>Selecciona una data</label>
@@ -104,363 +79,361 @@
         </small>
       </div> -->
 
-      <!-- Data pikaday -->
-      <div class="mb-3">
-        <h6>PIKADAY</h6>
-        <label>Selecciona una data</label>
-        <div class="input-group mt-1 mb-1">
-          <input
-            type="date"
-            class="form-control"
-            id="inputDate"
-            aria-describedby="inputGroup-sizing-default"
-            :min="minToday2"
-          />
-          <!--
-          <span class="input-group-text" id="inputGroup-sizing-default">
-            <i class="bi bi-calendar-week"></i>
-          </span> -->
+        <!-- Data pikaday -->
+        <div class="mb-3">
+          <!-- <h6>PIKADAY</h6> -->
+          <label>Selecciona una data</label>
+          <div class="input-group mt-1 mb-1">
+            <input
+              type="date"
+              class="form-control"
+              id="inputDate"
+              aria-describedby="inputGroup-sizing-default"
+              :min="minToday2"
+              v-model="selectedDate"
+            />
+          </div>
+          <small
+            >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
+            <a
+              href="https://g.page/notoriousjazzcafe?share"
+              class="tdn"
+              target="_blank"
+              >Consulta el nostre horari actualitzat a Google Maps
+            </a>
+          </small>
         </div>
-        <small
-          >Obrim de dimarts a diumenge, de 8 h fins a la mitjanit.
-          <a
-            href="https://g.page/notoriousjazzcafe?share"
-            class="tdn"
-            target="_blank"
-            >Consulta el nostre horari actualitzat a Google Maps
-          </a>
-        </small>
-      </div>
 
-      <!-- Hora -->
-      <div class="mb-3">
-        <label>Selecciona una hora</label>
-        <div class="input-group mt-1 mb-1">
-          <!--
+        <!-- Hora -->
+        <div class="mb-3">
+          <label>Selecciona una hora</label>
+          <div class="input-group mt-1 mb-1">
+            <!--
           <input
             type="time"
             class="form-control"
             id="inputTime"
             aria-describedby="inputGroup-sizing-default"
           /> -->
-          <!--
+            <!--
           <span class="input-group-text" id="inputGroup-sizing-default">
             <i class="bi bi-clock"></i>
           </span> -->
 
-          <select class="form-control">
-            <option
-              v-for="option in hourOptions"
-              v-bind:value="option.value"
-              :key="option"
-              id="inputTime"
-              :disabled="option.disabled"
-            >
-              {{ option.text }}
-            </option>
-          </select>
-        </div>
-        <small> Sols acceptem reserves per a dinars o sopars. </small>
-      </div>
-
-      <!-- Preferència de taula -->
-      <div class="mb-3">
-        <label>Selecciona una preferència de taula</label>
-        <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <div id="v-model-radiobutton">
-              <input
-                type="radio"
-                id="interior"
-                value="Interior"
-                v-model="prefTaula"
-                @blur="validacio()"
-              />
-              <label for="interior">Interior</label>
-              <br />
-              <input
-                type="radio"
-                id="terrassa"
-                value="Terrassa"
-                v-model="prefTaula"
-                @blur="validacio()"
-              />
-              <label for="terrassa">Terrassa</label>
-              <br />
-            </div>
-          </div>
-          <div class="col-4"></div>
-          <small :style="'color: transparent;'"
-          :class="
-            watcherGivenPreferenceStatus == true
-              ? 'text-success'
-              : watcherGivenPreferenceStatus == false
-              ? 'text-danger'
-              : ''
-          ">{{watcherGivenPreference}}</small>
-        </div>
-      </div>
-
-      <!-- Nom -->
-      <div class="mb-3">
-        <label>Nom</label>
-        <input
-          type="text"
-          class="form-control mt-1 mb-1"
-          id="inputName"
-          v-model="givenName"
-          @blur="validacio()"
-        />
-        <small
-          :style="'color: transparent;'"
-          :class="
-            watcherGivenNameStatus == true
-              ? 'text-success'
-              : watcherGivenNameStatus == false
-              ? 'text-danger'
-              : ''
-          "
-          >{{ watcherGivenName }}</small
-        >
-      </div>
-
-      <!-- Cognoms -->
-      <div class="mb-3">
-        <label>Cognoms</label>
-        <input
-          type="text"
-          class="form-control mt-1 mb-1"
-          id="inputSurname"
-          v-model="givenSurname"
-          @blur="validacio()"
-        />
-        <small
-          :style="'color: transparent;'"
-          :class="
-            watcherGivenSurnameStatus == true
-              ? 'text-success'
-              : watcherGivenSurnameStatus == false
-              ? 'text-danger'
-              : ''
-          "
-          >{{ watcherGivenSurname }}</small
-        >
-      </div>
-
-      <!-- Correu electrònic -->
-      <div class="mb-3">
-        <label>Correu electrònic</label>
-        <input
-          type="email"
-          class="form-control mt-1 mb-1"
-          id="inputEmail"
-          v-model="givenEmail"
-          @blur="validacio()"
-        />
-        <small
-          :style="'color: transparent;'"
-          :class="
-            watcherGivenEmailStatus == true
-              ? 'text-success'
-              : watcherGivenEmailStatus == false
-              ? 'text-danger'
-              : ''
-          "
-          >{{ watcherGivenEmail }}</small
-        >
-      </div>
-
-      <!-- Telèfon -->
-      <div class="mb-3">
-        <!-- <label>Telèfon</label> -->
-        <div class="row mt-1 mb-1" style="padding-left: 10px">
-          <div class="col-4 foraPL">
-            <label>Prefix int.</label>
             <select class="form-control">
               <option
-                v-for="option in intPhoneCodes"
+                v-for="option in hourOptions"
                 v-bind:value="option.value"
                 :key="option"
-                id="inputPhone"
+                id="inputTime"
                 :disabled="option.disabled"
-                :selected="option.selected"
               >
-                {{ option.code }}
+                {{ option.text }}
               </option>
             </select>
           </div>
-          <div class="col-8 foraPR">
-            <label>Telèfon</label>
-            <div class="input-group">
-              <input
-                type="tel"
-                class="form-control"
-                id="inputTel"
-                v-model="givenPhone"
-                @blur="validacio()"
-              />
+          <small> Sols acceptem reserves per a dinars o sopars. </small>
+        </div>
+
+        <!-- Preferència de taula -->
+        <div class="mb-3">
+          <label>Selecciona una preferència de taula</label>
+          <div class="row mt-1 mb-1">
+            <div class="col-4"></div>
+            <div class="col-4">
+              <div id="v-model-radiobutton">
+                <input
+                  type="radio"
+                  id="interior"
+                  name="taulaOp"
+                  value="Interior"
+                  v-model="prefTaula"
+                  @blur="validacio()"
+                />
+                <label for="interior">Interior</label>
+                <br />
+                <input
+                  type="radio"
+                  id="terrassa"
+                  name="taulaOp"
+                  value="Terrassa"
+                  v-model="prefTaula"
+                  @blur="validacio()"
+                />
+                <label for="terrassa">Terrassa</label>
+                <br />
+              </div>
             </div>
+            <div class="col-4"></div>
+            <small
+              :style="'color: transparent;'"
+              :class="
+                watcherGivenPreferenceStatus == true
+                  ? ''
+                  : watcherGivenPreferenceStatus == false
+                  ? 'text-danger'
+                  : ''
+              "
+              >{{ watcherGivenPreference }}</small
+            >
           </div>
+        </div>
+
+        <!-- Nom -->
+        <div class="mb-3">
+          <label>Nom</label>
+          <input
+            type="text"
+            class="form-control mt-1 mb-1"
+            id="inputName"
+            v-model="givenName"
+            @blur="validacio()"
+          />
           <small
             :style="'color: transparent;'"
             :class="
-              watcherGivenPhoneStatus == true
+              watcherGivenNameStatus == true
                 ? 'text-success'
-                : watcherGivenPhoneStatus == false
+                : watcherGivenNameStatus == false
                 ? 'text-danger'
                 : ''
             "
-            >{{ watcherGivenPhone }}</small
+            >{{ watcherGivenName }}</small
           >
         </div>
-      </div>
-      <!--
+
+        <!-- Cognoms -->
+        <div class="mb-3">
+          <label>Cognoms</label>
+          <input
+            type="text"
+            class="form-control mt-1 mb-1"
+            id="inputSurname"
+            v-model="givenSurname"
+            @blur="validacio()"
+          />
+          <small
+            :style="'color: transparent;'"
+            :class="
+              watcherGivenSurnameStatus == true
+                ? 'text-success'
+                : watcherGivenSurnameStatus == false
+                ? 'text-danger'
+                : ''
+            "
+            >{{ watcherGivenSurname }}</small
+          >
+        </div>
+
+        <!-- Correu electrònic -->
+        <div class="mb-3">
+          <label>Correu electrònic</label>
+          <input
+            type="email"
+            class="form-control mt-1 mb-1"
+            id="inputEmail"
+            v-model="givenEmail"
+            @blur="validacio()"
+          />
+          <small
+            :style="'color: transparent;'"
+            :class="
+              watcherGivenEmailStatus == true
+                ? 'text-success'
+                : watcherGivenEmailStatus == false
+                ? 'text-danger'
+                : ''
+            "
+            >{{ watcherGivenEmail }}</small
+          >
+        </div>
+
+        <!-- Telèfon -->
+        <div class="mb-3">
+          <!-- <label>Telèfon</label> -->
+          <div class="row mt-1 mb-1" style="padding-left: 10px">
+            <div class="col-4 foraPL">
+              <label>Prefix int.</label>
+              <select class="form-control">
+                <option
+                  v-for="option in intPhoneCodes"
+                  v-bind:value="option.value"
+                  :key="option"
+                  id="inputPhone"
+                  :disabled="option.disabled"
+                  :selected="option.selected"
+                >
+                  {{ option.code }}
+                </option>
+              </select>
+            </div>
+            <div class="col-8 foraPR">
+              <label>Telèfon</label>
+              <div class="input-group">
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="inputTel"
+                  v-model="givenPhone"
+                  @blur="validacio()"
+                />
+              </div>
+            </div>
+            <small
+              :style="'color: transparent;'"
+              :class="
+                watcherGivenPhoneStatus == true
+                  ? 'text-success'
+                  : watcherGivenPhoneStatus == false
+                  ? 'text-danger'
+                  : ''
+              "
+              >{{ watcherGivenPhone }}</small
+            >
+          </div>
+        </div>
+        <!--
       <small>
         Si el teu telèfon és internacional, siusplau, indica-hi també el prefix.
       </small> -->
 
-      <!-- Observacions -->
-      <small
-        >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de nens,
-        etc.):</small
-      >
-      <div class="mb-3 form-floating">
-        <textarea
-          class="form-control mt-1 mb-1"
-          id="floatingTextarea2"
-          style="height: 100px"
-        ></textarea>
-        <label for="floatingTextarea2">Observacions</label>
+        <!-- Observacions -->
         <small
-          >Tant la nostra entrada, espais com serveis estan adaptats per a
-          persones amb mobilitat reduïda (PMR).</small
+          >Ens vols comentar quelcom abans de venir? (Al·lèrgens, cotxets de
+          nens, etc.):</small
         >
+        <div class="mb-3 form-floating">
+          <textarea
+            class="form-control mt-1 mb-1"
+            id="inputObs"
+            style="height: 100px"
+          ></textarea>
+          <label for="inputObs">Observacions</label>
+          <small
+            >Tant la nostra entrada, espais com serveis estan adaptats per a
+            persones amb mobilitat reduïda (PMR).</small
+          >
+          <br />
+          <small>S'accepten gossos de companyia.</small><br />
+          <br />
+        </div>
+        <!-- Petit missatge legal -->
+        <h4>Un apunt final</h4>
         <br />
-        <small>S'accepten gossos de companyia.</small><br />
+        <p class="text-start margins">
+          <small>
+            👉 No utilitzarem les teves dades per a finalitats comercials ni
+            tampoc en realitzarem cap cessió a tercers.
+          </small>
+        </p>
+        <p class="text-start margins">
+          <small>
+            🗄️ Les teves dades seran emmagatzemades un màxim de 72 hores a la
+            nostra base de dades, comptant des de l'hora d'arribada al
+            restaurant.
+          </small>
+        </p>
+        <p class="text-start margins">
+          <small>
+            📲 Durant aquestes 72 hores podem utilitzar les teves dades per a
+            contactar-te en cas que sigui necessari (recordatori, cancel·lació o
+            altres motius).
+          </small>
+        </p>
         <br />
-      </div>
-      <!-- Petit missatge legal -->
-      <h4>Un apunt final</h4>
-      <br />
-      <p class="text-start margins">
-        <small>
-          👉 No utilitzarem les teves dades per a finalitats comercials ni
-          tampoc en realitzarem cap cessió a tercers.
-        </small>
-      </p>
-      <p class="text-start margins">
-        <small>
-          🗄️ Les teves dades seran emmagatzemades un màxim de 72 hores a la
-          nostra base de dades, comptant des de l'hora d'arribada al restaurant.
-        </small>
-      </p>
-      <p class="text-start margins">
-        <small>
-          📲 Durant aquestes 72 hores podem utilitzar les teves dades per a
-          contactar-te en cas que sigui necessari (recordatori, cancel·lació o
-          altres motius).
-        </small>
-      </p>
-      <br />
 
-      <!-- Acceptar legal -->
-      <!-- Button trigger modal -->
-      <div class="mb-2">
-        <button
-          type="button"
-          class="btn btn-info"
-          data-bs-toggle="modal"
-          data-bs-target="#modalLegal"
+        <!-- Acceptar legal -->
+        <!-- Button trigger modal -->
+        <div class="mb-2">
+          <button
+            type="button"
+            class="btn btn-info"
+            data-bs-toggle="modal"
+            data-bs-target="#modalLegal"
+          >
+            Llegir les condicions legals
+          </button>
+        </div>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="modalLegal"
+          tabindex="-1"
+          aria-labelledby="modalLegalLabel"
+          aria-hidden="true"
         >
-          Llegir les condicions legals
-        </button>
-      </div>
-
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="modalLegal"
-        tabindex="-1"
-        aria-labelledby="modalLegalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalLegalLabel">
-                Condicions legals
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-              et non rerum optio quia aspernatur nemo, minus repellat illo rem,
-              perferendis cupiditate vel? Dignissimos earum suscipit possimus
-              cumque similique doloremque.
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Tancar
-              </button>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLegalLabel">
+                  Condicions legals
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt et non rerum optio quia aspernatur nemo, minus repellat
+                illo rem, perferendis cupiditate vel? Dignissimos earum suscipit
+                possimus cumque similique doloremque.
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Tancar
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="form-check">
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-8">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked"
-              checked
-              v-model="checkLegal"
-            />
-            <label class="form-check-label" for="flexCheckChecked">
-              Accepto les condicions d'ús, la política de privacitat i el
-              tractament de dades personals.
-            </label>
-            
+        <div class="form-check">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckChecked"
+                checked
+                v-model="checkLegal"
+              />
+              <label class="form-check-label" for="flexCheckChecked">
+                Accepto les condicions d'ús, la política de privacitat i el
+                tractament de dades personals.
+              </label>
+            </div>
+            <div class="col-2"></div>
+            <small class="text-danger">{{ watcherCheckLegal }}</small>
           </div>
-          <div class="col-2"></div>
-          <small :style="'color: transparent;'"
-            :class="
-              watcherCheckLegalStatus == true
-                ? 'text-success'
-                : watcherCheckLegalStatus == false
-                ? 'text-danger'
-                : ''
-            ">{{watcherCheckLegal}}</small>
         </div>
-      </div>
 
-      <!-- Botó confirm & enviar -->
-      <div class="mt-4 mb-4">
-        <button
-          type="button"
-          class="btn btn-lg btn-success"
-          @click="showValidation()"
-        >
-          Enviar
-        </button>
-      </div>
+        <!-- Botó confirm & enviar -->
+        <div class="mt-4 mb-4">
+          <button
+            type="submit"
+            class="btn btn-lg btn-success"
+            @click="showValidation()"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
+//import { projectFirestore } from '../firebase/config'
+
 export default {
   name: "ReservaOne",
   data() {
@@ -469,6 +442,7 @@ export default {
       numPeople: 1,
       validationPeople: true,
       //Data
+      selectedDate: String,
       todayNumber: new Date().getDate(),
       todayMonth: new Date().getMonth() + 1,
       todayYear: new Date().getFullYear(),
@@ -488,6 +462,7 @@ export default {
         this.twoDigitDay(new Date()),
       //Hora
       hourOptions: [
+        { text: "Selecciona una hora", disabled: true },
         { text: "Dinars", disabled: true },
         { text: "12:30" },
         { text: "12:45" },
@@ -610,32 +585,25 @@ export default {
       //Obs
       //Condicions legals
       checkLegal: false,
-      watcherCheckLegal: "/",
       watcherCheckLegalStatus: Boolean,
     };
   },
   watch: {
-    numPeople() {
-      if (this.numPeople >= 1 && this.numPeople <= 12) {
-        this.watcherPeopleValidation = "";
-      } else {
-        this.watcherPeopleValidation =
-          "Siusplau, introdueix un nombre entre l'1 i el 12";
-      }
-    },
     prefTaula() {
       if (this.prefTaula == "") {
-        this.watcherGivenPreference = "Siusplau, indica una preferència de taula"
+        this.watcherGivenPreference =
+          "Siusplau, indica una preferència de taula";
         this.watcherGivenPreferenceStatus = false;
       } else if (this.prefTaula == "Interior" || this.prefTaula == "Terrassa") {
-        this.watcherGivenPreference = "Bona elecció!"
+        this.watcherGivenPreference = "/";
         this.watcherGivenPreferenceStatus = true;
       }
     },
     givenName() {
       //Recordatori preferència de taula, introduït abans del nom es mostrarà el missatge d'error en cas que no s'hagi seleccionat taula
       if (this.prefTaula == "") {
-        this.watcherGivenPreference = "Siusplau, indica una preferència de taula"
+        this.watcherGivenPreference =
+          "Siusplau, indica una preferència de taula";
         this.watcherGivenPreferenceStatus = false;
       }
       //if i no else if
@@ -670,8 +638,6 @@ export default {
       ) {
         this.watcherGivenEmail = "Email no vàlid";
         this.watcherGivenEmailStatus = false;
-      } else {
-        this.watcherGivenEmail = "holahola";
       }
     },
     givenPhone() {
@@ -682,13 +648,14 @@ export default {
     },
     checkLegal() {
       if (this.checkLegal == false) {
-        this.watcherCheckLegal = "Sense acceptar aquesta casella no es pot enviar el formulari";
+        this.watcherCheckLegal =
+          "Sense acceptar aquesta casella no es pot enviar el formulari";
         this.watcherCheckLegalStatus == false;
       } else if (this.checkLegal == true) {
-        this.watcherCheckLegal = "Has acceptat les condicions legals";
+        this.watcherCheckLegal = "";
         this.watcherCheckLegalStatus == true;
       }
-    }
+    },
   },
   methods: {
     twoDigitDay(d) {
@@ -745,6 +712,12 @@ export default {
       //Validació Check Legal
     },
     showValidation() {
+      if (this.checkLegal == false) {
+        this.watcherCheckLegal =
+          "Sense acceptar aquesta casella no es pot enviar el formulari";
+        this.watcherCheckLegalStatus == false;
+      }
+
       if (
         this.validationPeople &&
         this.validationTaula &&
@@ -755,6 +728,7 @@ export default {
         this.checkLegal == true
       ) {
         alert("TRUE");
+        return true;
       } else if (
         this.validationPeople &&
         this.validationTaula &&
@@ -765,9 +739,14 @@ export default {
         this.checkLegal == false
       ) {
         alert("FALSE");
+        return false;
       } else {
         alert("ELSE");
+        return false;
       }
+    },
+    getInputVal(id) {
+      return document.getElementById(id).value;
     },
   },
 };

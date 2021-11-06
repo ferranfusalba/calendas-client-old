@@ -1,8 +1,8 @@
 <template>
-  <div id="nav">
+  <!-- <div id="nav">
         <h1 class="margin">Margin</h1>
     <Header></Header>
-  </div>
+  </div> -->
   <section class="mt-4">
     <router-view />
   </section>
@@ -33,15 +33,19 @@ html, body {
 .margin {
   color: transparent;
 }
+
+.tdn {
+    text-decoration: none;
+}
 </style>
 
 <script>
-import Header from "@/components/Header.vue"; // @ is an alias to /src
+//import Header from "@/components/Header.vue"; // @ is an alias to /src
 
 export default {
   name: "Home",
   components: {
-    Header,
+    //Header,
   },
 };
 </script>

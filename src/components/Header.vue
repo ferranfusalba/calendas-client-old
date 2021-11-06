@@ -30,9 +30,3 @@
     </header>
   </div>
 </template>
-
-<style>
-.tdn {
-    text-decoration: none;
-}
-</style>
