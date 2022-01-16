@@ -299,8 +299,8 @@
 
         <!-- Observacions -->
         <small
-          >Ens vols comentar quelcom abans de venir? (cotxets de
-          nens, triar una taula en concret, etc.):</small
+          >Ens vols comentar quelcom abans de venir? (cotxets de nens, triar una
+          taula en concret, etc.):</small
         >
         <div class="mb-3 form-floating">
           <textarea
