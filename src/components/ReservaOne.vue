@@ -430,7 +430,6 @@
             Enviar
           </button>
         </div>
-        {{firebaseData}}
       </form>
     </div>
   </div>
