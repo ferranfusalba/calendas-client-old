@@ -15,6 +15,14 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "reserva1" */ '../views/ReservaStep1.vue')
   },
+  //{
+    //path: '/reserva2',
+    //name: 'Reserva 2',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    //component: () => import(/* webpackChunkName: "reserva2" */ '../views/ReservaStep2.vue')
+  //},
   {
     path: '/reserva3',
     name: 'Reserva 3',
@@ -24,8 +32,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "reserva1" */ '../views/ReservaStep3.vue')
   },
   {
-    path: '/reserva2',
-    name: 'Reserva 2',
+    path: '/reserva',
+    name: 'Reserva (One Page)',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

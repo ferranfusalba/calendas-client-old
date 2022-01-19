@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form-group mt-4">
-      <form class="formReserva">
+      <form class="formReserva" @submit.prevent="updateFirebase">
         <!-- Número de persones -->
         <div class="mb-3">
           <label>Número de persones</label>
@@ -274,7 +274,7 @@
                   type="tel"
                   class="form-control"
                   id="inputTel"
-                  v-model="givenPhone"
+                  v-model="formData.phone"
                   @blur="validacio()"
                 />
               </div>
@@ -421,11 +421,16 @@
           <button
             type="submit"
             class="btn btn-lg btn-success"
-            @click="showValidation()"
           >
+          <!-- <button
+            type="submit"
+            class="btn btn-lg btn-success"
+            @click="showValidation()"
+          > -->
             Enviar
           </button>
         </div>
+        {{firebaseData}}
       </form>
     </div>
   </div>
